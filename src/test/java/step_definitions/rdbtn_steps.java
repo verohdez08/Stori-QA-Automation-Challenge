@@ -1,17 +1,16 @@
 package step_definitions;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.Alert;
-import pages.radio_button_page;
-
 import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class rdbtn_steps {
 
@@ -23,41 +22,35 @@ public class rdbtn_steps {
         driver = new ChromeDriver();
         driver.get("https://rahulshettyacademy.com/AutomationPractice/");
         WebElement titlepage = driver.findElement(By.xpath("//h1['Practice Page']"));
-        if (titlepage.isDisplayed()) {
-            System.out.println("Se encuentra dentro de la pagina principal");
-        }else{
-            System.out.println("NO se encuentra dentro de la pagina principal");
-        }
+        Assert.assertTrue("No se redirecciono correcctamente a la pagina", titlepage.isDisplayed());
     }
 
     @Then("^I should see the section of radio button$")
     public void iShouldSeeTheSectionOfRadioButton() {
+        driver.manage().timeouts().implicitlyWait( 10, TimeUnit.SECONDS);
         WebElement radiobutton_section = driver.findElement(By.xpath("//*[@id='radio-btn-example']/fieldset/legend"));
-        if (radiobutton_section.isDisplayed()) {
-            System.out.println("Se encuentra la seccion de los radio button");
-        }else{
-            System.out.println("NO se encuentra la seccion de los radio button");
-        }
+        Assert.assertTrue("No se encontro la sección de los radio buttons", radiobutton_section.isDisplayed());
     }
 
     @And("^I validate the options of radio button$")
     public void iValidateTheOptionsOfRadioButton() {
+        WebDriverWait wait = new WebDriverWait(driver,30);
         WebElement rdbtn2 = driver.findElement(By.cssSelector("input[value='radio2']"));
+        wait.until(ExpectedConditions.elementToBeClickable(rdbtn2));
         rdbtn2.click();
         WebElement rdbtn3 = driver.findElement(By.cssSelector("input[value='radio3']"));
+        wait.until(ExpectedConditions.elementToBeClickable(rdbtn3));
         rdbtn3.click();
         WebElement rdbtn1 = driver.findElement(By.cssSelector("input[value='radio1']"));
+        wait.until(ExpectedConditions.elementToBeClickable(rdbtn1));
         rdbtn1.click();
     }
 
     @Then("^I should see the section of sugession class$")
     public void iShouldSeeTheSectionOfSugessionClass() {
-        WebElement radiobutton_section = driver.findElement(By.xpath("//*[@id='select-class-example']/fieldset/legend"));
-        if (radiobutton_section.isDisplayed()) {
-            System.out.println("Se encuentra la seccion de los radio button");
-        }else{
-            System.out.println("NO se encuentra la seccion de los radio button");
-        }
+        driver.manage().timeouts().implicitlyWait( 10, TimeUnit.SECONDS);
+        WebElement sugession_class = driver.findElement(By.xpath("//*[@id='select-class-example']/fieldset/legend"));
+        Assert.assertTrue("No se encontro la sección de sugession class", sugession_class.isDisplayed());
     }
 
     @Then("^I close the page$")
@@ -67,7 +60,9 @@ public class rdbtn_steps {
 
     @When("^I tap on type select country$")
     public void iTapOnTypeSelectCountry() {
+        WebDriverWait wait = new WebDriverWait(driver,30);
         WebElement select_country = driver.findElement((By.xpath("//input[@id='autocomplete']")));
+        wait.until(ExpectedConditions.elementToBeClickable(select_country));
         select_country.click();
     }
 
@@ -90,11 +85,7 @@ public class rdbtn_steps {
     @Then("^I should see the section of dropdown$")
     public void iShouldSeeTheSectionOfDropdown() {
         WebElement dropdown_section = driver.findElement(By.xpath("/html/body/div[1]/div[3]/fieldset/legend"));
-        if (dropdown_section.isDisplayed()) {
-            System.out.println("Se encuentra la seccion de los radio button");
-        }else{
-            System.out.println("NO se encuentra la seccion de los radio button");
-        }
+        Assert.assertTrue("No se encontro la sección de dropdown", dropdown_section.isDisplayed());
     }
     @And("^I validate dropdown options$")
     public void iValidateDropdownOptions() {
@@ -108,11 +99,7 @@ public class rdbtn_steps {
     @Then("^I should see the section of checkbox$")
     public void iShouldSeeTheSectionOfCheckbox() {
         WebElement checkbox_section = driver.findElement(By.xpath("/html/body/div[1]/div[3]/fieldset/legend"));
-        if (checkbox_section.isDisplayed()) {
-            System.out.println("Se encuentra la seccion de los radio button");
-        }else{
-            System.out.println("NO se encuentra la seccion de los radio button");
-        }
+        Assert.assertTrue("No se encontro la sección de checkbox", checkbox_section.isDisplayed());
     }
     @And("^I validate checkbox options$")
     public void iValidateCheckboxOptions() {
@@ -126,11 +113,7 @@ public class rdbtn_steps {
     @Then("^I should see the section of switch alert$")
     public void iShouldSeeTheSectionOfSwitchAlert() {
         WebElement switch_section = driver.findElement(By.xpath("/html/body/div[2]/div[3]/fieldset/legend"));
-        if (switch_section.isDisplayed()) {
-            System.out.println("Se encuentra la seccion de los radio button");
-        }else{
-            System.out.println("NO se encuentra la seccion de los radio button");
-        }
+        Assert.assertTrue("No se encontro la sección de switch", switch_section.isDisplayed());
     }
 
     @When("^I tap on text box$")
