@@ -22,7 +22,7 @@
       Then I should see the section of sugession class
       When I tap on type select country
       Then I write the word "Yo"
-   #   And I select Mexico in the list
+      And I select Mexico in the list
       Then I close the page
 
 

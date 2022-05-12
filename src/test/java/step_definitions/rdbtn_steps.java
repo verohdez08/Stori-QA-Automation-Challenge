@@ -18,7 +18,7 @@ public class rdbtn_steps {
 
     @Given("^I should see the practice page$")
     public void iShouldSeeThePracticePage() {
-        System.setProperty("webdriver.chrome.driver","./src/test/resources/chromedriver/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","./src/test/resources/chromedriver/chromedriver");
         driver = new ChromeDriver();
         driver.get("https://rahulshettyacademy.com/AutomationPractice/");
         WebElement titlepage = driver.findElement(By.xpath("//h1['Practice Page']"));
@@ -76,11 +76,7 @@ public class rdbtn_steps {
     public void iSelectMexicoInTheList() {
         WebElement list = driver.findElement(By.xpath("//*[@class='ui-menu-item-wrapper']"));
         String result =  list.getAttribute("innerText");
-            if (result.equalsIgnoreCase("Mexico")){
-
-            }else{
-                System.out.println("No se encuentra la opcion");
-            }
+        Assert.assertTrue("No se encontro la opcion México", result.equalsIgnoreCase("Mexico"));
     }
     @Then("^I should see the section of dropdown$")
     public void iShouldSeeTheSectionOfDropdown() {
@@ -89,11 +85,15 @@ public class rdbtn_steps {
     }
     @And("^I validate dropdown options$")
     public void iValidateDropdownOptions() {
+        WebDriverWait wait = new WebDriverWait(driver,30);
         WebElement dropdown_section = driver.findElement(By.xpath("//select[@id='dropdown-class-example']"));
+        wait.until(ExpectedConditions.elementToBeClickable(dropdown_section));
         dropdown_section.click();
         WebElement option2 = driver.findElement(By.xpath("//option[@value='option2']"));
+        wait.until(ExpectedConditions.elementToBeClickable(option2));
         option2.click();
         WebElement option3 = driver.findElement(By.xpath("//option[@value='option3']"));
+        wait.until(ExpectedConditions.elementToBeClickable(option3));
         option3.click();
     }
     @Then("^I should see the section of checkbox$")
@@ -103,9 +103,12 @@ public class rdbtn_steps {
     }
     @And("^I validate checkbox options$")
     public void iValidateCheckboxOptions() {
+        WebDriverWait wait = new WebDriverWait(driver,30);
         WebElement option1 = driver.findElement(By.cssSelector("input[id=checkBoxOption1]"));
+        wait.until(ExpectedConditions.elementToBeClickable(option1));
         option1.click();
         WebElement option2 = driver.findElement(By.cssSelector("input[id=checkBoxOption2]"));
+        wait.until(ExpectedConditions.elementToBeClickable(option2));
         option2.click();
 
     }
@@ -129,16 +132,18 @@ public class rdbtn_steps {
     }
 
     @Then("^I tap on alert button$")
-    public void iTapOnAlertButton() {
+    public void iTapOnAlertButton() throws InterruptedException {
         WebElement btn_alert = driver.findElement(By.xpath("//input[@id='alertbtn']"));
         btn_alert.click();
+        Thread.sleep(1000);
         driver.switchTo().alert().accept();
 
     }
 
     @And("^Validate element displayed$")
-    public void validateElementDisplayed() {
+    public void validateElementDisplayed() throws InterruptedException {
         WebElement element_displayed = driver.findElement(By.xpath("/html/body/div[3]/div[2]/fieldset[1]/input[3]"));
+        Thread.sleep(1000);
         if (element_displayed.isDisplayed()){
             System.out.println("El elemento no esta oculto");
         }else{
