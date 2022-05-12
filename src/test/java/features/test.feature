@@ -2,7 +2,7 @@
   Feature: Validation Practice Page
     Validation of elements practice page
 
-    Scenario: Validation of radio button
+    Scenario: Validation of all options page
       Given I should see the practice page
       Then I should see the section of radio button
       And I validate the options of radio button

@@ -18,7 +18,7 @@ public class rdbtn_steps {
 
     @Given("^I should see the practice page$")
     public void iShouldSeeThePracticePage() {
-        System.setProperty("webdriver.chrome.driver","./src/test/resources/chromedriver/chromedriver");
+        System.setProperty("webdriver.chrome.driver","./src/test/resources/chromedriver/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://rahulshettyacademy.com/AutomationPractice/");
         WebElement titlepage = driver.findElement(By.xpath("//h1['Practice Page']"));
