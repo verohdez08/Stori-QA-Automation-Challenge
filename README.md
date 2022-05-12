@@ -11,3 +11,7 @@
     src/test/resources/chromedriver/
 5. El archivo ejecutable se encuentra en: 
    src/test/java/runner/test_runner
+
+
+NOTA: Los scenarios se dividieron por cada funcionalidad del caso de prueba.
+   Al final se encuentra un scenario con todas las validaciones juntas.
