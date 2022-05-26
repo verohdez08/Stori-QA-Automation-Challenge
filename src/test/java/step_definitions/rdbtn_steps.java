@@ -8,9 +8,13 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 public class rdbtn_steps {
 
@@ -18,7 +22,7 @@ public class rdbtn_steps {
 
     @Given("^I should see the practice page$")
     public void iShouldSeeThePracticePage() {
-        System.setProperty("webdriver.chrome.driver","./src/test/resources/chromedriver/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","./src/test/resources/chromedriver/chromedriver");
         driver = new ChromeDriver();
         driver.get("https://rahulshettyacademy.com/AutomationPractice/");
         WebElement titlepage = driver.findElement(By.xpath("//h1['Practice Page']"));
@@ -74,9 +78,11 @@ public class rdbtn_steps {
 
     @And("^I select Mexico in the list$")
     public void iSelectMexicoInTheList() {
-        WebElement list = driver.findElement(By.xpath("//*[@class='ui-menu-item-wrapper']"));
-        String result =  list.getAttribute("innerText");
-        Assert.assertTrue("No se encontro la opcion México", result.equalsIgnoreCase("Mexico"));
+        WebElement mx = driver.findElement(By.xpath("//*[@class='ui-menu-item-wrapper'][contains(text(), 'Mexico')]"));
+        mx.click();
+        WebElement text = driver.findElement(By.id("autocomplete"));
+        String text1 = text.getText();
+        Assert.assertTrue("No se encontro la opcion México", text1.equals("Mexico") );
     }
     @Then("^I should see the section of dropdown$")
     public void iShouldSeeTheSectionOfDropdown() {

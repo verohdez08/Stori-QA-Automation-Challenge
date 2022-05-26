@@ -37,7 +37,7 @@
       Given I should see the practice page
       Then I should see the section of sugession class
       When I tap on type select country
-      Then I write the word "Yo"
+      Then I write the word "Me"
       And I select Mexico in the list
 
     Scenario: Validation of all options page
